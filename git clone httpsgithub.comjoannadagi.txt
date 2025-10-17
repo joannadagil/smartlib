@@ -11,13 +11,21 @@ git config --global user.email “[valid-email]”
 
 ZROBIENIE SWOJEGO BRANCHA
 git branch
-git branch [twoje_imie]
+git switch -c [twoje_imie]	# '-c' tzn create, potem już bez -c
 git branch
-git checkout [twoje_imie]
-git branch
+
+robimy sobie plik jakiś txt i zapisujemy go
 
 DODANIE ZMIAN
 git add .
 git commit -m "comment"
 git push origin [branch_name]
+
+git log --oneline --decorate
+
+
+git branch main
+git merge branch [brnach_name]
+
+
 
