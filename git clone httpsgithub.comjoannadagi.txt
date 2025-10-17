@@ -1,0 +1,23 @@
+git clone https://github.com/joannadagil/smartlib.git
+
+cd smartlib
+dir
+
+
+git config --global user.name “[firstname lastname]”
+git config --global user.email “[valid-email]”
+
+
+
+ZROBIENIE SWOJEGO BRANCHA
+git branch
+git branch [twoje_imie]
+git branch
+git checkout [twoje_imie]
+git branch
+
+DODANIE ZMIAN
+git add .
+git commit -m "comment"
+git push origin [branch_name]
+
