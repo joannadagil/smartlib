@@ -19,7 +19,7 @@ git config --global user.email “[valid-email]”
 
 # Create your own branch
 git branch
-git switch -c [your_branch_name] # '-c' is a flag that creates the branch, if you want to switch to already existing branch skip it
+git switch -c [your_branch_name] # '-c' is a flag that creates the branch, if you want to switch to an already existing branch skip it
 git branch
 
 ```
