@@ -22,6 +22,10 @@ git branch
 git switch -c [your_branch_name] # '-c' is a flag that creates the branch, if you want to switch to an already existing branch skip it
 git branch
 
+git add .
+git commit -m "added my branch"
+pit push origin [your_branch_name]
+
 ```
 
 Below is the standard workflow for working on SmartLib:
