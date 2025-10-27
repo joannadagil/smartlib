@@ -1,0 +1,425 @@
+\documentclass[]{report}
+
+%polish
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+
+%images
+\usepackage{graphicx}
+\usepackage{xcolor}
+\definecolor{darkred}{RGB}{139,0,0}  % standard dark red
+
+
+%uml diagram
+\usepackage{pgf-umlcd}
+\usepackage{geometry}
+\usepackage{tikz}
+%\geometry{margin=1cm}
+
+\usepackage{multicol}
+
+
+%place here
+\usepackage{float}
+
+%page numbering
+\pagenumbering{arabic}
+
+%fix section numbering
+\renewcommand{\thesection}{\arabic{section}}
+%\renewcommand\descriptionlabel[1]{$\cdot$ \textbf{#1}}
+
+
+% Title Page
+\title{Raport 2 Inżynieria Oprogramowania}
+\author{Grupa 1}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\section{Wstęp}
+
+W tym raporcie przedstawiony zostanie efekt pracy grupy 1 nad projektem z inżynierii oprogramowania.
+
+Nasz zespół będzie budował aplikację mobilną, która w zasadzie będzie dwoma oddzielnymi podaplikacjami - aplikacją bibliotekarza i klienta biblioteki. Zależnie od rodzaju konta, które użytkownik się zaloguje, zostanie przeniesiony do odpowiedniej podaplikacji.
+
+%--------------------------------
+\newpage
+\section{Specyfikacja}
+
+%----------------------
+\subsection{Funkcjonalność}
+
+Aplikacja zawiera dwa zestawy dostępnych funkcjonalności - zestaw dla bibliotekarza i dla klienta. Część działań będzie wspólna dla obydwu użytkowników (funkcjonalność ogólna).
+
+Funkcjonalności zostały podzielone na coraz to bardziej rozbudowane wersje aplikacji. Liczba w nawiasie określa numer wersji. Wersje porządkowane są rosnąco (1), (2), ... .
+
+\subsubsection{Funkcjonalność ogólna:}
+
+\begin{description}
+    \item[(1) Wyświetlenie katalogu]  Wyświetlenie uporządkowanego alfabetycznie spisu księgozbioru.
+    \item[(1) Wyszukanie książki]
+    Wpisanie autora lub tytułu i wyświetlenie pozycji z katalogu do nich przypisanych.
+\end{description}
+
+\subsubsection{Funkcjonalność panelu bibliotekarza:}
+
+\begin{description} 
+    \item[(1) Dodanie publikacji] Wpisanie danych o publikacji i dodanie do księgozbioru.
+    \item[(1) Dodanie instancji książki] Wybór w katalogu publikacji, do której będzie należeć dana książka, przypisanie kodu kreskowego instancji książki i dodanie do księgozbioru.
+    \item[(3) Usunięcie publikacji] Wybór w katalogu publikacji i usunięcie jej z księgozbioru. 
+    \item[(3) Usunięcie książki] Wybór w katalogu instancji książki i usunięcie jej z księgozbioru.
+\end{description}
+
+\subsubsection{Funkcjonalność panelu klienta:}
+
+\begin{description}
+    \item[(2) Wyświetlenie wypożyczeń] Wyświetlenie uporządkowanego chronologicznie spisu wypożyczeń.
+    \item[(3) Wyświetlenie i edycja profilu] Wyświetlenie profilu użytkownika z wszystkimi danymi.
+    \item[(1) Wypożyczenie książki] Zeskanowanie kodu na pożądanej instancji książki i dodanie jej do listy wypożyczeń, jeśli nie przekracza limitu.
+    \item[(1) Zwrócenie książki] Zeskanowanie kodu na zwracanej instancji książki i usunięcie jej z listy wypożyczeń.
+\end{description}
+
+
+%----------------------
+\subsection{Wybór technologii}
+
+\subsubsection{Technologie frontendowe}
+
+\textbf{React + React Native}
+
+Są to popularne technologie umożliwiające tworzenie wieloplatformowych aplikacji, co jest niezwykle istotne przy próbie pogodzenia odrębnych potrzeb klienta biblioteki (mobilność, szybkość obsługi) i bibliotekarza (potrzeba masowego dodawania danych). Język JavaScript jest obecnie najpopularniejszym językiem na świecie, co znacznie powiększa dostępne rozwiązania i biblioteki.
+
+
+\subsubsection{Technologie backendowe}
+
+\textbf{Node.js + MySQL}
+
+MySQL jest najpopularniejszym rozwiązaniem, jeśli chodzi o obsługę baz danych, i umożliwia kompleksowe i bezpieczne zarządzanie danymi po stronie serwera, Node.js umożliwia szybką i prostą obsługę serwera.
+
+\subsubsection{Oprogramowanie do kolaboracji}
+
+\textbf{freedcamp.com + Discord}
+
+Przy wyborze oprogramowania do organizacji pracy czynnikiem decydującym były koszty z tym powiązane, co w przypadku aplikacji umożliwiających pracę w schemacie Kanban lub Scrum okazało się istotnym problemem. Udało się jednak znaleźć stronę spełniającą wszystkie nasze potrzeby.
+
+Discord został wybrany ze względu na możliwość tworzenia kanałów — prostego segregowania wątków i grup zadaniowych, jednocześnie zachowując wszystkie konwersacje w jednym miejscu.
+
+\vspace{3ex}
+
+\noindent\textbf{ProjectLibre}
+
+Użyjemy tego narzędzia do stworzenia wykresu Gaunta dla naszego projektu. Wybór konkretnie tego programu został nam narzucony przez laboratoria.
+
+
+\subsubsection{Oprogramowanie do zarządzania wersjami}
+
+\textbf{Git + GitHub}
+
+Jest to oczywisty wybór. Git umożliwia zarządzanie wersjami i merging kodu pisanego przez wiele osób, jest to podstawowe narzędzie przy pracy nad większymi projektami informatycznymi.
+
+%---------------------
+\newpage
+\section{Organizacja pracy nad projektem}
+Z wykorzystaniem oprogramowania libre project sporządziliśmy wykres Gaunta naszego projektu. Jak na razie nie uwzględnia wszystkich zasobów, jakimi dysponujemy -  indywidualnych zdolności wszystkich członków zespołu. Mimo to diagram spełnił swoją rolę i pozwolił nam oszacować wstępną datę ukończenia projektu: 8 stycznia, co daje nam komfortowy zapas w razie nieprzewidzianych trudności z projektem.
+\graphicspath{ {./diagram-gaunta.png}, {./gaunt-zbliżenie.png} }
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{diagram-gaunta.png}
+\textit{Wykres Gaunta dla zadań projektu}
+\centering
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{gaunt-zbliżenie.png}
+\textit{Zbliżenie wykresu Gaunta}
+\centering
+\end{figure}
+
+\subsection{Podział na zespoły}
+
+W celu organizacji pracy podzieliliśmy się na 2 główne zespoły - frontendowy i backendowy, w każdym został wytypowany manager mający na celu porządkować przepływ pracy odpowiedniego zespołu. Mianowialiśmy także 2 dodatkowe stanowiska - project manager i human resources.
+
+
+
+\vspace{3ex}
+
+\noindent\begin{minipage}[t]{0.32\textwidth}
+    \subsubsection*{Frontend devs}
+
+        Szymon Credo (\textbf{manager})
+        
+        Natalia Bardadyn
+        
+        Olimpia Dejko
+        
+        Szymon Doba
+        
+        Karol Dziuba
+        
+        Dawid Filipek
+
+        Franek Gotkowski
+        
+        Olek Grzegrzułka
+        
+        Karol Jurkewicz
+
+    \subsubsection*{Frontend testerzy}
+        ...
+
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.32\textwidth}
+    \subsubsection*{Backend devs}
+        Dawid Daraż (\textbf{manager})
+        
+        Adrian Cydejko
+        
+        Szymon Choiński
+        
+        Asia Dagil
+        
+        Michał Deptuła
+        
+        Mateusz Durka
+        
+        Danila Filipau
+        
+        Jakub Gankowski
+
+    \subsubsection*{Backend testerzy}
+        ...
+    
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.32\textwidth}
+    \subsubsection*{Project manager}
+        Franek Gotkowski
+    \subsubsection*{HR}
+        Piotr Czarnocki
+    
+\end{minipage}
+
+\subsection{Szkolenia}
+
+W ramach projektu przeprowadzamy także szkolenia zespołu, mające na celu wdrożenie wszystkich do obsługi potrzebnych narzędzi albo zaznajomienie się z używanymi technologiami. Poniżej zamieszczamy listę odbytych i planowanych szkoleń.
+
+\begin{description}
+    \item[23/10/2025 "Wstęp do serwerów i wysyłanie zapytań"]
+    
+        prowadzący: Franek Gotkowski
+        
+    \item[30/10/2025 "Wstęp do Githuba"]
+    
+        prowadząca: Asia Dagil
+
+        Instalacja Gita i założenie kont na Githubie. Stworzenie repozytorium projektu i dodanie swojego brancha przez każdego członka zespołu. Przejście przez przykładowy workflow.
+
+    \item[06/11/2025 "Wstęp do Reacta"]
+    
+        prowadzący: Franek Gotkowski
+\end{description}
+
+% ---------------------------------------
+
+\newpage
+\section{Model UML}
+
+Wstępny diagram przedstawiając model bazy danych w MySQL.
+% https://www.w3schools.com/mysql/mysql_datatypes.asp
+\vspace{3ex}
+
+% to do
+
+\begin{tikzpicture}
+    \tikzstyle{every node}=[font=\small]
+
+    \begin{class}[text width=4cm]{publisher}{-5.5,0}
+        \attribute{publisher\_id \hfill: INT(10)}
+        \attribute{publisher \hfill: VARCHAR(40)}
+    \end{class}
+
+    \begin{class}[text width=4cm]{book-author}{-5.5,-2.3}
+        \attribute{author\_id \hfill: INT(10)}        
+        \attribute{book\_id \hfill: INT(10)}
+    \end{class}
+
+    \begin{class}[text width=4cm]{author}{-5.5,-4.8}
+        \attribute{author\_id \hfill: INT(10)}
+        \attribute{name \hfill: VARCHAR(20)}
+        \attribute{surname \hfill: VARCHAR(20)}
+    \end{class}
+
+    \begin{class}[text width=4cm]{book-genre}{-5.5,-7.6}
+        \attribute{genre\_id \hfill: INT(10)}
+        \attribute{book\_id \hfill: INT(10)}
+    \end{class}
+
+    \begin{class}[text width=4cm]{genre}{-5.5,-10.2}
+        \attribute{genre\_id \hfill: INT(10)}
+        \attribute{genre \hfill: VARCHAR(20)}
+    \end{class}
+    
+    \begin{class}[text width=4cm]{book-key-word}{-5.5,-12.5}
+        \attribute{key\_word\_id \hfill: INT(10)}
+        \attribute{book\_id \hfill: INT(10)}
+    \end{class}
+
+    \begin{class}[text width=4cm]{key-word}{-5.5,-15.1}
+        \attribute{key\_word\_id \hfill: INT(10)}
+        \attribute{key\_word \hfill: VARCHAR(20)}
+    \end{class}
+
+    %-------------------------------------
+
+    \begin{class}[text width=4cm]{book}{0,0}
+        \attribute{book\_id \hfill: INT(10)}
+        \attribute{publisher\_id \hfill: INT(10)}
+        \attribute{title \hfill: VARCHAR(50)}
+        \attribute{publish\_year \hfill: YEAR}
+        \attribute{isbn \hfill: VARCHAR(13)}
+        \attribute{available\_inst \hfill: INT(10)}
+    \end{class}
+
+    \begin{class}[text width=4cm]{instance}{0,-4.2}
+        \attribute{instance\_id \hfill: INT(10)}
+        \attribute{book\_id \hfill: INT(10)}
+        \attribute{available \hfill: BOOLEAN}
+    \end{class}
+
+
+    \begin{class}[text width=4cm]{rental}{0,-7}
+        \attribute{rental\_id \hfill: INT(10)}
+        \attribute{instance\_id \hfill: INT(10)}
+        \attribute{user\_id \hfill: SMALLINT(5)}
+        \attribute{extensions \hfill: BIT(1)}
+        \attribute{borrow\_date \hfill: DATE}
+        \attribute{return\_date \hfill: DATE}
+    \end{class}
+
+    
+    
+    \begin{class}[text width=4cm]{user}{0, -11.6}
+        \attribute{user\_id \hfill: INT(10)}
+        \attribute{address\_id \hfill: INT(10)} 
+        \attribute{card\_id \hfill: INT(10)} 
+        \attribute{personal\_info\_id \hfill: INT(10)} 
+    \end{class}
+
+    \begin{class}[text width=4cm]{worker}{0, -15.2}
+        \attribute{worker\_id \hfill: INT(10)}
+        \attribute{personal\_info\_id \hfill: INT(10)} 
+    \end{class}
+
+    % --------------------------------------------
+    \begin{class}[text width=4cm]{address}{5.5, -5.6}
+        \attribute{address\_id \hfill: INT(10)}
+        \attribute{user\_id \hfill: INT(10)}
+        \attribute{city \hfill: VARCHAR(16)}
+        \attribute{postcode \hfill: VARCHAR(5)}
+        \attribute{street \hfill: VARCHAR(20)}
+        \attribute{street\_no \hfill: VARCHAR(4)}
+        \attribute{flat\_no \hfill: VARCHAR(4)}
+    \end{class}
+    
+    \begin{class}[text width=4cm]{card}{5.5, -10.1}
+        \attribute{card\_id \hfill: INT(10)}
+        \attribute{user\_id \hfill: INT(10)}
+        \attribute{number \hfill: VARCHAR(16)}
+        \attribute{exp \hfill: VARCHAR(4)}
+        \attribute{cvv \hfill: VARCHAR(4)}
+    \end{class}
+
+    \begin{class}[text width=4cm]{personal-info}{5.5, -13.6}
+        \attribute{personal\_info\_id \hfill: INT(10)}
+        \attribute{name \hfill: VARCHAR(30)}
+        \attribute{surname \hfill: VARCHAR(30)}
+        \attribute{phone \hfill: VARCHAR(20)}
+        \attribute{email \hfill: VARCHAR(50)}
+        \attribute{password \hfill: VARCHAR(20)}
+    \end{class}
+
+    %---------------------------------------
+    %\association{worker}{}{1}{personal-info}{}{*}
+
+    \draw (-3.38,-0.7) node[above, xshift=5pt]{\small 1} -- (-2.12,-0.7) node[above, xshift=-4pt]{\small *}; % publisher-book
+    
+    \draw[] (-3.38,-3.2) node[above, xshift=5pt]{\small *}-- (-3, -3.2) -- (-3, -1.3) -- (-2.12,-1.3) node[above, xshift=-4pt]{\small 1}; % book author - book
+
+    
+    \draw (-3.38,-8.5) node[above, xshift=5pt]{\small *} -- (-2.7, -8.5) -- (-2.7, -1.8) -- (-2.12,-1.8)node[above, xshift=-4pt]{\small 1}; % book genre - book
+
+    \draw (-3.38,-13.5) node[above, xshift=5pt]{\small *} -- (-2.4, -13.5) -- (-2.4, -2.4) -- (-2.12,-2.4) node[above, xshift=-4pt]{\small 1}; % book key word - book
+
+    
+    %\association{publisher}{}{1}{book}{}{*}
+    \association{author}{}{1}{book-author}{}{*}
+    %\association{book author}{}{*}{book}{}{1}
+    %\association{book genre}{}{1}{book}{}{*}
+    \association{book-genre}{}{*}{genre}{}{1}
+    \association{key-word}{}{1}{book-key-word}{}{*}
+    %\association{book key word}{}{1}{book}{}{*}
+    \association{book}{}{1}{instance}{}{*}
+    
+    % book_copy <-> rental
+    \association{instance}{}{1}{rental}{}{*}
+    
+    % rental <-> user
+    \association{user}{}{1}{rental}{}{*}
+
+    \draw (2.12,-16) node[above, xshift=5pt]{\small 1} -- (3.38,-16) node[above, xshift=-4pt]{\small 1}; % worker - info
+
+    \draw (2.12,-13.4) node[above, xshift=5pt]{\small 1} -- (2.7,-13.4) -- (2.7,-15.2) -- (3.38,-15.2) node[above, xshift=-4pt]{\small 1}; % user - info
+
+    \draw (2.12,-12.6) node[above, xshift=5pt]{\small 1} -- (3.38,-12.6) node[above, xshift=-4pt]{\small 1}; % user - card
+
+    \draw (2.12,-12.1) node[above, xshift=5pt]{\small 1} -- (2.7,-12.1) -- (2.7,-8) -- (3.38,-8) node[above, xshift=-4pt]{\small 1}; % user - address
+
+    %\association{user}{}{1}{address}{}{1}
+    %\association{user}{}{*}{status}{}{1}
+    %\association{user}{}{1}{card}{}{1}
+
+    
+\end{tikzpicture}
+
+
+%--------------------------------
+%\newpage
+%\section{Scenariusze testowe}
+
+
+%--------------------------------
+\newpage
+\section{Aplikacja}
+
+
+%--------------------------------
+\newpage
+\section{GUI}
+
+
+%--------------------------------
+%\newpage
+%\section{Doxygen}
+
+
+%--------------------------------
+%\newpage
+%\section{Instrukcja obsługi}
+
+
+%--------------------------------
+%\newpage
+%\section{Testy}
+
+%---------------------
+%\subsection{Protokoły testowe}
+%---------------------
+%\subsection{Rezultaty testów}
+
+
+\end{document}          
